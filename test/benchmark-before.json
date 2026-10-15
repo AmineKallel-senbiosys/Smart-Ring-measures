@@ -1,0 +1,419 @@
+{
+  "referenceSource": "User product sizes, not measured circumference; these scans are development data, not an independent validation set",
+  "evaluations": [
+    {
+      "test": "Test N1",
+      "ratio": 1,
+      "expected": [
+        6,
+        8,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.74,
+          "circumference": 55.74656040447109,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.82,
+          "circumference": 52.84989381966168,
+          "size": 6,
+          "quality": 55,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 18.07,
+          "circumference": 56.76307255545613,
+          "size": 8,
+          "quality": 94,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 20.35,
+          "circumference": 63.945505863842335,
+          "size": 10,
+          "quality": 90,
+          "region": "proximal"
+        }
+      ],
+      "correct": 1,
+      "pixelScale": 5.549065420560748
+    },
+    {
+      "test": "Test N1",
+      "ratio": 0.85,
+      "expected": [
+        6,
+        8,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.74,
+          "circumference": 55.716856234679945,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.74,
+          "circumference": 52.58749240483937,
+          "size": 6,
+          "quality": 92,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 18.05,
+          "circumference": 56.7033290750411,
+          "size": 8,
+          "quality": 95,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 20.32,
+          "circumference": 63.84214825185857,
+          "size": 10,
+          "quality": 90,
+          "region": "proximal"
+        }
+      ],
+      "correct": 1,
+      "pixelScale": 4.719450501057783
+    },
+    {
+      "test": "Test N1",
+      "ratio": 0.7,
+      "expected": [
+        6,
+        8,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.69,
+          "circumference": 55.588084154163454,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.68,
+          "circumference": 52.4166612440398,
+          "size": 6,
+          "quality": 92,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 18.02,
+          "circumference": 56.618749643449966,
+          "size": 8,
+          "quality": 95,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 20.29,
+          "circumference": 63.73427400250918,
+          "size": 10,
+          "quality": 90,
+          "region": "proximal"
+        }
+      ],
+      "correct": 1,
+      "pixelScale": 3.890186915887851
+    },
+    {
+      "test": "Test N2",
+      "ratio": 1,
+      "expected": [
+        8,
+        10,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.67,
+          "circumference": 55.52504139621927,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 19.88,
+          "circumference": 62.45000664487208,
+          "size": 10,
+          "quality": 94,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 20.31,
+          "circumference": 63.80320444288021,
+          "size": 10,
+          "quality": 55,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 21.0,
+          "circumference": 65.97243537154378,
+          "size": 12,
+          "quality": 87,
+          "region": "proximal"
+        }
+      ],
+      "correct": 3,
+      "pixelScale": 5.983044320316295
+    },
+    {
+      "test": "Test N2",
+      "ratio": 0.85,
+      "expected": [
+        8,
+        10,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.63,
+          "circumference": 55.38840487840888,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 19.87,
+          "circumference": 62.43809027883472,
+          "size": 10,
+          "quality": 94,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 20.74,
+          "circumference": 65.15294792058725,
+          "size": 12,
+          "quality": 94,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 20.92,
+          "circumference": 65.737111819072,
+          "size": 12,
+          "quality": 87,
+          "region": "proximal"
+        }
+      ],
+      "correct": 2,
+      "pixelScale": 5.087742130742166
+    },
+    {
+      "test": "Test N2",
+      "ratio": 0.7,
+      "expected": [
+        8,
+        10,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.63,
+          "circumference": 55.38118698425707,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 19.88,
+          "circumference": 62.440444110964044,
+          "size": 10,
+          "quality": 94,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 20.75,
+          "circumference": 65.18122229281822,
+          "size": 12,
+          "quality": 94,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 20.84,
+          "circumference": 65.4704708986145,
+          "size": 12,
+          "quality": 87,
+          "region": "proximal"
+        }
+      ],
+      "correct": 2,
+      "pixelScale": 4.185331488619979
+    },
+    {
+      "test": "Test N3",
+      "ratio": 1,
+      "expected": [
+        6,
+        8,
+        8,
+        8
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 16.15,
+          "circumference": 50.74769621239119,
+          "size": 6,
+          "quality": 70,
+          "region": "near-joint"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.59,
+          "circumference": 52.11411268670571,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 16.8,
+          "circumference": 52.777090753946844,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 19.16,
+          "circumference": 60.18457402793713,
+          "size": 10,
+          "quality": 92,
+          "region": "proximal"
+        }
+      ],
+      "correct": 1,
+      "pixelScale": 6.049747889526911
+    },
+    {
+      "test": "Test N3",
+      "ratio": 0.85,
+      "expected": [
+        6,
+        8,
+        8,
+        8
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 16.04,
+          "circumference": 50.389394771747355,
+          "size": null,
+          "quality": 86,
+          "region": "proximal"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.55,
+          "circumference": 51.990941643075914,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 16.79,
+          "circumference": 52.73332819670167,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 19.06,
+          "circumference": 59.87719604904672,
+          "size": 10,
+          "quality": 93,
+          "region": "proximal"
+        }
+      ],
+      "correct": 0,
+      "pixelScale": 5.14344312525033
+    },
+    {
+      "test": "Test N3",
+      "ratio": 0.7,
+      "expected": [
+        6,
+        8,
+        8,
+        8
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 16.03,
+          "circumference": 50.36462112969536,
+          "size": null,
+          "quality": 86,
+          "region": "proximal"
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.54,
+          "circumference": 51.95813018491522,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal"
+        },
+        {
+          "finger": "middle",
+          "widthMm": 16.78,
+          "circumference": 52.72247408639399,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal"
+        },
+        {
+          "finger": "index",
+          "widthMm": 19.07,
+          "circumference": 59.90160666981933,
+          "size": 10,
+          "quality": 94,
+          "region": "proximal"
+        }
+      ],
+      "correct": 0,
+      "pixelScale": 4.234813604031619
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+test,person,finger,width_mm,confirmed_product_size,circumference_mm
+Test N1,,little,17.74,6,
+Test N1,,ring,16.82,8,
+Test N1,,middle,18.07,10,
+Test N1,,index,20.35,10,
+Test N2,,little,17.67,8,
+Test N2,,ring,19.88,10,
+Test N2,,middle,20.31,10,
+Test N2,,index,21.0,10,
+Test N3,,little,16.15,6,
+Test N3,,ring,16.59,8,
+Test N3,,middle,16.8,8,
+Test N3,,index,19.16,8,

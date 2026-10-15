@@ -1,0 +1,49 @@
+{
+  "source": "User-confirmed product sizes, 2026-10-14",
+  "usedForTraining": false,
+  "tests": {
+    "Test N1": {
+      "personId": null,
+      "sizes": {
+        "little": 6,
+        "ring": 8,
+        "middle": 10,
+        "index": 10
+      },
+      "circumferencesMm": null,
+      "submittedEstimatedCircumferencesMm": {
+        "little": 56.504,
+        "ring": 54.3422,
+        "middle": 58.7732,
+        "index": 65.36
+      }
+    },
+    "Test N2": {
+      "personId": null,
+      "sizes": {
+        "little": 8,
+        "ring": 10,
+        "middle": 10,
+        "index": 10
+      },
+      "circumferencesMm": null,
+      "submittedEstimatedCircumferencesMm": {
+        "little": 55.525,
+        "ring": 62.45,
+        "middle": 63.803,
+        "index": 65.97
+      }
+    },
+    "Test N3": {
+      "personId": null,
+      "sizes": {
+        "little": 6,
+        "ring": 8,
+        "middle": 8,
+        "index": 8
+      },
+      "circumferencesMm": null
+    }
+  },
+  "referencePolicy": "User-confirmed product sizes are the reference. Submitted circumference values are unverified app estimates, not physical calibration measurements."
+}

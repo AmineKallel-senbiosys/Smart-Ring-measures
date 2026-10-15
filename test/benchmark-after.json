@@ -1,0 +1,276 @@
+{
+  "referenceSource": "User product sizes, not measured circumference; these scans are development data, not an independent validation set",
+  "evaluations": [
+    {
+      "test": "Test N1",
+      "ratio": 1,
+      "expected": [
+        6,
+        8,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.74,
+          "circumference": 55.74656040447109,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.02970416979114532,
+            "comparisonCircumferenceMm": 55.716856234679945,
+            "candidateSizes": [
+              8
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.82,
+          "circumference": 52.84989381966168,
+          "size": 6,
+          "quality": 55,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.26240141482231394,
+            "comparisonCircumferenceMm": 52.58749240483937,
+            "candidateSizes": [
+              6
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "middle",
+          "widthMm": 18.07,
+          "circumference": 56.76307255545613,
+          "size": 8,
+          "quality": 94,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.05974348041502964,
+            "comparisonCircumferenceMm": 56.7033290750411,
+            "candidateSizes": [
+              8
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "index",
+          "widthMm": 20.35,
+          "circumference": 63.945505863842335,
+          "size": 10,
+          "quality": 90,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.10335761198376758,
+            "comparisonCircumferenceMm": 63.84214825185857,
+            "candidateSizes": [
+              10
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        }
+      ],
+      "correct": 1,
+      "pixelScale": 5.549065420560748
+    },
+    {
+      "test": "Test N2",
+      "ratio": 1,
+      "expected": [
+        8,
+        10,
+        10,
+        10
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 17.67,
+          "circumference": 55.52504139621927,
+          "size": 8,
+          "quality": 70,
+          "region": "near-joint",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.13663651781039476,
+            "comparisonCircumferenceMm": 55.38840487840888,
+            "candidateSizes": [
+              8
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "ring",
+          "widthMm": 19.88,
+          "circumference": 62.45000664487208,
+          "size": 10,
+          "quality": 94,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.01191636603736157,
+            "comparisonCircumferenceMm": 62.43809027883472,
+            "candidateSizes": [
+              10
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "middle",
+          "widthMm": 20.31,
+          "circumference": 63.80320444288021,
+          "size": 10,
+          "quality": 50,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": false,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 1.3497434777070438,
+            "comparisonCircumferenceMm": 65.15294792058725,
+            "candidateSizes": [
+              10,
+              12
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "index",
+          "widthMm": 21.0,
+          "circumference": 65.97243537154378,
+          "size": 12,
+          "quality": 87,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.23532355247178316,
+            "comparisonCircumferenceMm": 65.737111819072,
+            "candidateSizes": [
+              12
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        }
+      ],
+      "correct": 3,
+      "pixelScale": 5.983044320316295
+    },
+    {
+      "test": "Test N3",
+      "ratio": 1,
+      "expected": [
+        6,
+        8,
+        8,
+        8
+      ],
+      "results": [
+        {
+          "finger": "little",
+          "widthMm": 16.15,
+          "circumference": 50.74769621239119,
+          "size": 6,
+          "quality": 50,
+          "region": "near-joint",
+          "stability": {
+            "checked": true,
+            "stable": false,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.3583014406438352,
+            "comparisonCircumferenceMm": 50.389394771747355,
+            "candidateSizes": [
+              6
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "ring",
+          "widthMm": 16.59,
+          "circumference": 52.11411268670571,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.12317104362979592,
+            "comparisonCircumferenceMm": 51.990941643075914,
+            "candidateSizes": [
+              6
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "middle",
+          "widthMm": 16.8,
+          "circumference": 52.777090753946844,
+          "size": 6,
+          "quality": 93,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.04376255724517364,
+            "comparisonCircumferenceMm": 52.73332819670167,
+            "candidateSizes": [
+              6
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        },
+        {
+          "finger": "index",
+          "widthMm": 19.16,
+          "circumference": 60.18457402793713,
+          "size": 10,
+          "quality": 92,
+          "region": "proximal",
+          "stability": {
+            "checked": true,
+            "stable": true,
+            "comparisonScale": 0.85,
+            "circumferenceDifferenceMm": 0.30737797889041474,
+            "comparisonCircumferenceMm": 59.87719604904672,
+            "candidateSizes": [
+              10
+            ],
+            "meaning": "Sensitivity to image processing; not a validated physical error interval"
+          }
+        }
+      ],
+      "correct": 1,
+      "pixelScale": 6.049747889526911
+    }
+  ]
+}
