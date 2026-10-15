@@ -1,3 +1,32 @@
+# Local review dumps and captured test runs
 test/*/
 record-review/
 .video-tools/
+
+# Dependencies and Python cache
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local secrets and machine-specific calibration
+.env
+.env.*
+measurement-calibration.json
+calibration-pairs.csv
+
+# Root-only previews, archives, and Windows shortcuts
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+/*.lnk
+/*.tar.gz
+/*.zip
+
+# OS and editor junk
+Thumbs.db
+Desktop.ini
+.idea/
+*.swp
