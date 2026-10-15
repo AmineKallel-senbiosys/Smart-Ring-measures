@@ -1,12 +1,10 @@
 import {spawn} from 'node:child_process';
 import process from 'node:process';
-// Accept the auth token through hidden stdin, keeping it out of files and argv.
-process.stdin.setEncoding('utf8');
-if(process.stdin.isTTY)process.stdin.setRawMode(true);
-console.log('Ready for ngrok token on hidden stdin.');
-let input='';
-const token=await new Promise(resolve=>{const handle=chunk=>{input+=chunk;if(/[\r\n]/.test(input)){process.stdin.off('data',handle);if(process.stdin.isTTY)process.stdin.setRawMode(false);process.stdin.pause();resolve(input.trim());}};process.stdin.on('data',handle);});
-input='';
+import {readFile} from 'node:fs/promises';
+// Repository token configuration, outside the web server's dist directory.
+const config=JSON.parse(await readFile(new URL('./ring-sizing/ngrok-local.config.json',import.meta.url),'utf8'));
+const token=typeof config.authtoken==='string'?config.authtoken.trim():'';
+if(!token)throw new Error('Missing authtoken in ngrok-local.config.json');
 const child=spawn('ngrok',['http','http://127.0.0.1:4173','--log=stdout','--log-format=json'],{windowsHide:true,env:{...process.env,NGROK_AUTHTOKEN:token},stdio:['ignore','pipe','pipe']});
 let diagnostic='';
 for(const output of [child.stdout,child.stderr])output.on('data',chunk=>{diagnostic=(diagnostic+chunk.toString().split(token).join('[redacted]')).slice(-6000);});
