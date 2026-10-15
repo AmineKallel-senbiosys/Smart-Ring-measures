@@ -1,0 +1,31 @@
+[
+  {
+    "size": 6,
+    "minimum": 50.6,
+    "okMinimum": 51.25,
+    "okMaximum": 51.9,
+    "maximumExclusive": 54.45
+  },
+  {
+    "size": 8,
+    "minimum": 54.45,
+    "okMinimum": 55.725,
+    "okMaximum": 57.0,
+    "maximumExclusive": 59.55
+  },
+  {
+    "size": 10,
+    "minimum": 59.55,
+    "okMinimum": 60.825,
+    "okMaximum": 62.1,
+    "maximumExclusive": 64.65
+  },
+  {
+    "size": 12,
+    "minimum": 64.65,
+    "okMinimum": 65.925,
+    "okMaximum": 67.2,
+    "maximumExclusive": null,
+    "maximumInclusive": 67.2
+  }
+]

@@ -1,0 +1,5 @@
+import {SIZE_CHART} from './screen-sizing.js';
+export function equivalentDiameter(width,depthRatio=.85){if(!Number.isFinite(width)||width<=0)throw new RangeError('Invalid finger width');const a=width/2,b=a*depthRatio;return 3*(a+b)-Math.sqrt((3*a+b)*(a+3*b));}
+export function nearestSize(d){return SIZE_CHART.reduce((best,row)=>Math.abs(row.diameter-d)<Math.abs(best.diameter-d)?row:best).size;}
+export function transformPoint(m,p){const v=m[6]*p.x+m[7]*p.y+m[8];if(Math.abs(v)<1e-9)throw new RangeError('Invalid perspective');return {x:(m[0]*p.x+m[1]*p.y+m[2])/v,y:(m[3]*p.x+m[4]*p.y+m[5])/v};}
+export function sampleSummary(widths){if(widths.length<3)throw new Error('Finger boundaries are unclear. Spread your fingers on a plain, contrasting surface.');const sorted=[...widths].sort((a,b)=>a-b),median=sorted[Math.floor(sorted.length/2)];const deviations=sorted.map(w=>Math.abs(w-median)).sort((a,b)=>a-b);const mad=deviations[Math.floor(deviations.length/2)];return {widthMm:median,quality:Math.max(20,Math.min(95,Math.round(95-400*mad/median))),spreadMm:mad};}

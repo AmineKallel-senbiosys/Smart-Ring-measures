@@ -1,0 +1,7 @@
+import {spawn} from 'node:child_process';
+import {createInterface} from 'node:readline';
+let child,sequence=0;
+const pending=new Map();
+function start(){if(child)return;child=spawn(process.env.RING_PYTHON||'C:\\Users\\AmineKallel\\AppData\\Local\\Programs\\Python\\Python311\\python.exe',['-u','hand_worker.py'],{windowsHide:true,stdio:['pipe','pipe','pipe']});child.stderr.on('data',()=>{});const lines=createInterface({input:child.stdout});lines.on('line',line=>{try{const reply=JSON.parse(line);if(reply.ready)return;const job=pending.get(reply.id);if(job){if(reply.stage!==undefined){job.onStage(reply.stage);return;}pending.delete(reply.id);clearTimeout(job.timer);reply.error?job.reject(new Error(reply.error)):job.resolve(reply.result);}}catch{}});child.on('error',()=>{for(const job of pending.values())job.reject(new Error('Local vision worker could not start.'));pending.clear();child=null;});child.on('exit',()=>{for(const job of pending.values())job.reject(new Error('Local vision worker stopped.'));pending.clear();child=null;});}
+export function measure(image,mode='analyze',onStage=()=>{}){start();if(pending.size>4)return Promise.reject(new Error('The sizing engine is busy. Please try again shortly.'));return new Promise((resolve,reject)=>{const id=++sequence,timer=setTimeout(()=>{pending.delete(id);reject(new Error('Measurement timed out. Please retry with a clear photo.'));},45000);pending.set(id,{resolve,reject,timer,onStage});child.stdin.write(JSON.stringify({id,image:image.toString('base64'),mode})+'\n');});}
+process.on('exit',()=>child?.kill());

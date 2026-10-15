@@ -1,0 +1,8 @@
+let sessionId,testId;
+export function beginCaptureTest(){testId=crypto.randomUUID();}
+import {coverCrop} from './camera-guidance.mjs';
+export function configureSession(id){sessionId=id;}
+export function prepareEngine(){return Promise.resolve(true);}
+async function request(image,inspect=false){if(!sessionId)throw new Error('The sizing session is not connected.');const w=image.videoWidth||image.width,h=image.videoHeight||image.height;if(!w||!h)throw new Error('The photo could not be read.');const box=image.videoWidth?image.getBoundingClientRect():{width:w,height:h},crop=coverCrop(w,h,box.width,box.height),ratio=Math.min(1,(inspect?640:2400)/Math.max(crop.width,crop.height)),canvas=document.createElement('canvas');canvas.width=Math.round(crop.width*ratio);canvas.height=Math.round(crop.height*ratio);canvas.getContext('2d').drawImage(image,crop.x,crop.y,crop.width,crop.height,0,0,canvas.width,canvas.height);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/jpeg',.92));const response=await fetch(`/api/sessions/${sessionId}/analyze${inspect?'?inspect=1':''}`,{method:'POST',headers:{'Content-Type':'image/jpeg','X-Scan-Context':JSON.stringify({testId,sourceWidth:w,sourceHeight:h,sentWidth:canvas.width,sentHeight:canvas.height,previewWidth:box.width,previewHeight:box.height})},body:blob});const data=await response.json();if(!response.ok)throw new Error(data.error||'The photo could not be measured.');if(inspect&&data.pixelScale)data.resolutionOK=data.pixelScale*Math.min(1,2400/Math.max(crop.width,crop.height))/ratio>=3;return data;}
+export async function analyzeHand(image,onStage=()=>{}){onStage(0);const result=await request(image);onStage(2);return result;}
+export function inspectFrame(image){return request(image,true);}

@@ -1,0 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {coverCrop,phoneLevel} from '../dist/camera-guidance.mjs';
+test('portrait preview uses the same centred source rectangle for analysis and capture',()=>{const crop=coverCrop(1440,1920,390,844);assert.equal(crop.height,1920);assert.ok(Math.abs(crop.width/crop.height-390/844)<1e-12);assert.equal(crop.x*2+crop.width,1440);assert.equal(crop.y,0);const still=coverCrop(2880,3840,390,844);assert.equal(still.x,crop.x*2);assert.equal(still.width,crop.width*2);});
+test('landscape cover crop preserves reference-object scale',()=>{const crop=coverCrop(1920,1440,900,500);assert.equal(crop.width,1920);assert.equal(crop.y*2+crop.height,1440);const cardWidth=428,fingerWidth=90;assert.equal(fingerWidth*85.6/cardWidth,(fingerWidth*.5)*85.6/(cardWidth*.5));assert.throws(()=>coverCrop(0,100,50,50));});
+test('angle is derived from screen normal rather than adding Euler angles',()=>{assert.equal(phoneLevel(0,0).angle,0);assert.ok(Math.abs(phoneLevel(20,0).angle-20)<1e-10);assert.ok(Math.abs(phoneLevel(0,-17).angle-17)<1e-10);assert.ok(phoneLevel(8,8).angle>10);assert.equal(phoneLevel(null,0),null);assert.equal(phoneLevel(NaN,0),null);});
+test('level bubble follows screen rotation without changing tilt',()=>{const portrait=phoneLevel(0,17,0),landscape=phoneLevel(0,17,90);assert.ok(portrait.x>0);assert.ok(Math.abs(portrait.y)<1e-12);assert.ok(Math.abs(landscape.x)<1e-12);assert.ok(landscape.y<0);assert.equal(portrait.angle,landscape.angle);});

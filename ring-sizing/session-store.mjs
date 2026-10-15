@@ -1,0 +1,18 @@
+import {randomUUID} from 'node:crypto';
+import {fitForCircumference} from './product-fit.mjs';
+export class SessionStore{
+ constructor(){this.sessions=new Map();}
+ create(lang='en'){const s={id:randomUUID(),lang:lang==='fr'?'fr':'en',status:'waiting',results:null,selectedFinger:0,updatedAt:Date.now(),listeners:new Set()};this.sessions.set(s.id,s);return s;}
+ get(id){const s=this.sessions.get(id);if(s&&Date.now()-s.updatedAt>7200000){s.results=null;s.status='error';for(const send of s.listeners)send(this.view(s));s.listeners.clear();this.sessions.delete(id);return null;}return s;}
+ view(s){return {id:s.id,lang:s.lang,status:s.status,results:s.results,confirmedSizes:s.confirmedSizes||{},selectedFinger:s.selectedFinger,stage:s.stage||0};}
+ close(id){const s=this.get(id);if(!s)return null;s.status='closed';s.results=null;s.confirmedSizes={};s.selectedFinger=0;s.stage=0;s.updatedAt=Date.now();for(const send of s.listeners)send(this.view(s));return s;}
+ update(id,p){const s=this.get(id);if(!s)throw new Error('Session expired');if(s.status==='closed')throw new Error('Session closed. Scan the new QR code.');if(p.status&&!['waiting','connected','capturing','analyzing','reviewing','result','error'].includes(p.status))throw new Error('Invalid status');
+ if(p.correction!==undefined){const {finger,circumference}=p.correction||{};if(!s.results||!s.results.some(r=>r.finger===finger)||!Number.isFinite(circumference)||circumference<30||circumference>100)throw new Error('Enter a measured circumference between 30 and 100 mm');p={...p,results:s.results.map(r=>r.finger!==finger?r:{...r,measured:true,photoCircumference:r.photoCircumference??r.circumference,circumference,diameter:circumference/Math.PI,widthMm:r.widthMm??circumference/Math.PI,measurementSource:'measured'})};}
+ if(p.results!==undefined&&p.results!==null){if(!Array.isArray(p.results)||p.results.length!==4)throw new Error('Four finger results required');for(const r of p.results){if(!['little','ring','middle','index'].includes(r.finger))throw new Error('Invalid finger');if(r.measured===false)continue;if(!Number.isFinite(r.diameter)||r.diameter<8||r.diameter>35||!Number.isFinite(r.quality)||r.quality<0||r.quality>100||!Number.isFinite(r.widthMm))throw new Error('Invalid measurement');}if(new Set(p.results.map(r=>r.finger)).size!==4)throw new Error('Duplicate fingers');p={...p,results:p.results.map(r=>{if(r.measured===false)return {finger:r.finger,measured:false,diameter:null,circumference:null,widthMm:null,quality:0,size:null,zone:'unmeasured',outOfRange:false,measurementSource:'unmeasured',failureReason:['inconsistent-widths','hand-outline-unavailable','finger-edges-unavailable'].includes(r.failureReason)?r.failureReason:'measurement-unavailable'};const circumference=r.circumference===undefined?r.diameter*Math.PI:r.circumference;return {...r,measured:true,circumference,...fitForCircumference(circumference)};})};}
+ if(p.confirmedSize!==undefined){const {finger,size}=p.confirmedSize||{};if(!s.results?.some(r=>r.finger===finger)||![null,6,8,10,12].includes(size))throw new Error('Invalid confirmed size');p={...p,confirmedSizes:{...s.confirmedSizes,[finger]:size}};}
+ if(p.results===null)p={...p,confirmedSizes:{}};
+ if(p.selectedFinger!==undefined&&(!Number.isInteger(p.selectedFinger)||p.selectedFinger<0||p.selectedFinger>3))throw new Error('Invalid finger');
+ if(p.stage!==undefined&&(!Number.isInteger(p.stage)||p.stage<0||p.stage>2))throw new Error('Invalid stage');
+ for(const field of ['status','results','selectedFinger','stage','confirmedSizes'])if(p[field]!==undefined)s[field]=p[field];s.updatedAt=Date.now();for(const send of s.listeners)send(this.view(s));return s;
+ }
+}

@@ -1,0 +1,16 @@
+import {readFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const origin='http://127.0.0.1:4173';
+const created=await fetch(origin+'/api/sessions',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({lang:'fr'})});
+const session=await created.json();
+const image=await readFile('../record-review/hand-test.png');
+const inspected=await (await fetch(origin+`/api/sessions/${session.id}/analyze?inspect=1`,{method:'POST',headers:{'Content-Type':'image/png'},body:image})).json();assert.equal(inspected.hand,true);assert.ok(inspected.pixelScale>0&&inspected.pixelScale<3);
+const response=await fetch(origin+`/api/sessions/${session.id}/analyze`,{method:'POST',headers:{'Content-Type':'image/png'},body:image});
+const result=await response.json();assert.equal(response.status,422);assert.match(result.error,/too small|angled/);
+const paired=await (await fetch(origin+'/api/sessions/'+session.id)).json();assert.equal(paired.results,null);assert.equal(paired.status,'error');
+const results=['little','ring','middle','index'].map((finger,i)=>({finger,circumference:i<2?56.5:61.2,diameter:(i<2?56.5:61.2)/Math.PI,widthMm:i<2?18:20,quality:83,measurementSource:'photo'}));
+const update=await fetch(origin+'/api/sessions/'+session.id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({results,status:'result'})});assert.equal(update.status,200);
+const correction=await fetch(origin+'/api/sessions/'+session.id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({correction:{finger:'ring',circumference:57.1}})});assert.equal(correction.status,200);
+const synced=await (await fetch(origin+'/api/sessions/'+session.id)).json();assert.deepEqual(synced.results.map(r=>r.size),[8,8,10,10]);assert.equal(synced.results[1].zone,'tight');assert.ok(synced.results.every(r=>r.quality===83));
+await fetch(origin+'/api/sessions/'+session.id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({results:null,status:'waiting'})});
+console.log(JSON.stringify({session:session.id,rejectedRecordingFrame:result.error,pairedCorrectionVerified:true,fixture:'Synthetic circumference values for API/UI validation; not a successful hand-photo scan'}));
